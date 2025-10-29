@@ -1,7 +1,7 @@
 # ktor-sample
 
 Proyecto de ejemplo desarrollado en **Kotlin** utilizando **Ktor**, **Koin** y **MapDB**.  
-Implementa un CRUD básico para la entidad **Student**, ideal para explorar arquitectura sencilla de servidor con inyección de dependencias y persistencia embebida.
+Implementa un CRUD básico para la entidad **Users**, ideal para explorar arquitectura sencilla de servidor con inyección de dependencias y persistencia embebida.
 
 ---
 
@@ -29,8 +29,8 @@ Antes de ejecutar el proyecto, asegúrate de tener instalado:
 1. Clona el repositorio:
 
    ```
-   git clone https://github.com/cbidev-10/ktor-sample.git
-   cd ktor-sample
+   git clone https://github.com/cbidev-10/ktor-sample-auth.git
+   cd ktor-sample-auth
    ```
 
 2. Ejecuta la aplicación:
@@ -42,18 +42,16 @@ Antes de ejecutar el proyecto, asegúrate de tener instalado:
 3. La API estará disponible en:
 
    ```
-   http://localhost:8080
+   http://localhost:8081
    ```
 
 ---
 
 ## Endpoints principales
 
-- `GET /students` – Lista todos los estudiantes
-- `GET /students/{id}` – Obtiene un estudiante por ID
-- `POST /students` – Crea un nuevo estudiante
-- `PUT /students/{id}` – Actualiza un estudiante existente
-- `DELETE /students/{id}` – Elimina un estudiante
+- `POST /users` – Crea un nuevo User
+- `PUT /users/{id}` – Actualiza un User existente
+- `POST /users/authenticate` – Verifica autenticidad del User
 
 ---
 
