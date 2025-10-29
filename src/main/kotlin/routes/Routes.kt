@@ -1,16 +1,16 @@
 package routes
 
-import handlers.StudentHandler
+import handlers.UserHandler
 import io.ktor.server.application.Application
 import io.ktor.server.routing.routing
 import org.koin.ktor.ext.inject
 
 fun Application.registerRoutes() {
-    val studentHandler: StudentHandler by inject()
+    val userHandler: UserHandler by inject()
 
     routing {
-        with(studentHandler) {
-            studentRoutes()
+        with(userHandler) {
+            userRoutes()
         }
     }
 }

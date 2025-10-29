@@ -1,19 +1,20 @@
-import handlers.StudentHandler
+import handlers.UserHandler
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
-import repositories.IStudentRepository
-import repositories.impl.StudentRepositoryMapDbImpl
-import usecases.StudentUseCases
+import repositories.IUserRepository
+import repositories.impl.UserRepositoryMapDbImpl
+import usecases.UserUseCases
 
 val appModule = module {
-    single<IStudentRepository> {
-        StudentRepositoryMapDbImpl(get())
+    single<IUserRepository> {
+        UserRepositoryMapDbImpl(get(named("usersDb")))
     }
 
     single {
-        StudentUseCases(get())
+        UserUseCases(get())
     }
 
     single {
-        StudentHandler(get())
+        UserHandler(get())
     }
 }

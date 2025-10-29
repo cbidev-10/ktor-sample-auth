@@ -1,4 +1,5 @@
-import models.Student
+import models.User
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import org.mapdb.DB
 import org.mapdb.DBMaker
@@ -9,10 +10,10 @@ val mapDbModule = module {
         DBMaker.memoryDB().make()
     }
 
-    single<MutableMap<Int, Student>> {
+    single<MutableMap<Int, User>>(named("usersDb")) {
         get<DB>().hashMap(
-            "students",
+            "users",
             Serializer.INTEGER, Serializer.JAVA
-        ).createOrOpen() as MutableMap<Int, Student>
+        ).createOrOpen() as MutableMap<Int, User>
     }
 }

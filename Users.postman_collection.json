@@ -1,0 +1,115 @@
+{
+	"info": {
+		"_postman_id": "3742fb42-0c70-4b3e-8120-9f1722b92a13",
+		"name": "Users",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "49205787",
+		"_collection_link": "https://cbidev-posadas-6075503.postman.co/workspace/cbi's-Workspace~2b2788d1-106b-4d68-89a8-c9136c408ef9/collection/49205787-3742fb42-0c70-4b3e-8120-9f1722b92a13?action=share&source=collection_link&creator=49205787"
+	},
+	"item": [
+		{
+			"name": "Create User",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"admin\",\n    \"password\": \"1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"users"
+					]
+				},
+				"description": "Generated from cURL: curl -X POST http://localhost:8080/students \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"legajo\":\"123\",\"firstName\":\"Juan\",\"lastName\":\"Perez\",\"email\":\"juan.perez@email.com\"}'\n"
+			},
+			"response": []
+		},
+		{
+			"name": "User Authenticate",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"admin\",\n    \"password\": \"1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/users/authenticate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"users",
+						"authenticate"
+					]
+				},
+				"description": "Generated from cURL: curl -X POST http://localhost:8080/students \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"legajo\":\"123\",\"firstName\":\"Juan\",\"lastName\":\"Perez\",\"email\":\"juan.perez@email.com\"}'\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Update User By Id",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"admin10\",\n    \"password\": \"1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/users/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"users",
+						"1"
+					]
+				},
+				"description": "Generated from cURL: curl -X PUT http://localhost:8080/students/1 \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"legajo\":\"123\",\"firstName\":\"Juan modificado\",\"lastName\":\"Perez\",\"email\":\"juan.perez@email.com\"}'\n"
+			},
+			"response": []
+		}
+	]
+}
