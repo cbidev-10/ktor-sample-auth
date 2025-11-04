@@ -4,6 +4,7 @@ import io.ktor.http.HttpStatusCode
 import io.ktor.server.request.receive
 import io.ktor.server.response.respond
 import io.ktor.server.routing.Route
+import io.ktor.server.routing.get
 import io.ktor.server.routing.post
 import io.ktor.server.routing.put
 import io.ktor.server.routing.route
@@ -41,6 +42,16 @@ class UserHandler(
                 val dto = call.receive<UserRequestDto>()
                 val response = userUseCases.authenticate(dto.toUser())
                 call.respond(TokenResponseDto(response))
+            }
+
+            get("/validate") {
+                val token = call.request.headers["Authorization"].toString()
+                val validToken = userUseCases.validateToken(token)
+                if (validToken) {
+                    call.respond(HttpStatusCode.OK)
+                } else {
+                    call.respond(HttpStatusCode.Forbidden)
+                }
             }
         }
     }

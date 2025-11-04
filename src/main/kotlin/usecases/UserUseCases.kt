@@ -21,4 +21,8 @@ class UserUseCases(
         userRepository.get(user) ?: throw Exception("User [${user.username}] not found")
         return tokenGeneratorRepository.generateToken()
     }
+
+    suspend fun validateToken(token: String): Boolean {
+        return tokenGeneratorRepository.validateToken(token)
+    }
 }

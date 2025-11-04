@@ -51,7 +51,8 @@ Antes de ejecutar el proyecto, asegúrate de tener instalado:
 
 - `POST /users` – Crea un nuevo User
 - `PUT /users/{id}` – Actualiza un User existente
-- `POST /users/authenticate` – Verifica autenticidad del User
+- `POST /users/authenticate` – Verifica autenticidad del User y retorna un token
+- `GET /users/validate` – Verifica autenticidad del User a partir del Token
 
 ---
 

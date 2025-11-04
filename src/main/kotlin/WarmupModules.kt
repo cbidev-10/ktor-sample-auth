@@ -12,14 +12,6 @@ fun Application.configureWarmup() {
             User(
                 username = "admin1",
                 password = "1234"
-            ),
-            User(
-                username = "admin2",
-                password = "1234"
-            ),
-            User(
-                username = "admin3",
-                password = "1234"
             )
         ).run {
             this.forEach { repository.create(it) }

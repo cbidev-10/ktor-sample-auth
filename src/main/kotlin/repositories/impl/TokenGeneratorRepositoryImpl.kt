@@ -6,7 +6,8 @@ import io.ktor.client.request.get
 import repositories.ITokenGeneratorRepository
 
 class TokenGeneratorRepositoryImpl(
-    private val client: HttpClient
+    private val client: HttpClient,
+    private val tokens: MutableList<String> = mutableListOf()
 ) : ITokenGeneratorRepository {
 
     companion object {
@@ -15,6 +16,10 @@ class TokenGeneratorRepositoryImpl(
 
     override suspend fun generateToken(): String {
         val response = client.get(URL)
-        return response.body<List<String>>().first()
+        return response.body<List<String>>().first().also { tokens.add(it) }
+    }
+
+    override suspend fun validateToken(token: String): Boolean {
+        return tokens.contains(token)
     }
 }
