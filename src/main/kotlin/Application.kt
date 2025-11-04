@@ -9,7 +9,7 @@ import routes.registerRoutes
 fun Application.module() {
     install(Koin) {
         slf4jLogger()
-        modules(appModule, mapDbModule)
+        modules(appModule, mapDbModule, restModule)
     }
 
     install(ContentNegotiation) {

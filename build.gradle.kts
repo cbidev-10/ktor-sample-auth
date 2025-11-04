@@ -22,6 +22,8 @@ repositories {
 }
 
 dependencies {
+    implementation(libs.ktor.client.apache)
+    implementation(libs.ktor.client.content.negotiation)
     implementation(libs.ktor.server.core)
     implementation(libs.ktor.server.status.pages)
     implementation(libs.ktor.server.netty)

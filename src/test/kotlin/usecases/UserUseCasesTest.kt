@@ -3,16 +3,18 @@ package usecases
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
+import kotlinx.coroutines.runBlocking
 import models.User
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertTrue
+import repositories.ITokenGeneratorRepository
 import repositories.IUserRepository
 import kotlin.test.Test
 
 class UserUseCasesMockTest {
 
     private val repo = mockk<IUserRepository>(relaxed = true)
-    private val useCases = UserUseCases(repo)
+    private val tokenGeneratorRepository = mockk<ITokenGeneratorRepository>(relaxed = true)
+    private val useCases = UserUseCases(repo, tokenGeneratorRepository)
 
     @Test
     fun `createUser should call repo create and return new User`() {
@@ -41,14 +43,22 @@ class UserUseCasesMockTest {
     }
 
     @Test
-    fun `validateUser should call repo and return valid user`() {
+    fun `validateUser should call repo and return token`() {
         val s = User(username = "test", password = "1234")
+        val expectedToken = "ea4cc05e-b9c1-11f0-8de9-0242ac120002"
+
         coEvery { repo.get(s) } returns s
+        coEvery { tokenGeneratorRepository.generateToken() } returns expectedToken
 
-        val validUser = useCases.validateUser(s)
+        val token = runBlocking {
+            useCases.validateUser(s)
+        }
 
-        assertTrue(validUser)
+        assertEquals(expectedToken, token)
 
-        coVerify { repo.get(s) }
+        coVerify(exactly = 1) {
+            repo.get(s)
+            tokenGeneratorRepository.generateToken()
+        }
     }
 }

@@ -1,9 +1,13 @@
 package usecases
 
 import models.User
+import repositories.ITokenGeneratorRepository
 import repositories.IUserRepository
 
-class UserUseCases(private val userRepository: IUserRepository) {
+class UserUseCases(
+    private val userRepository: IUserRepository,
+    private val tokenGeneratorRepository: ITokenGeneratorRepository
+) {
 
     fun createUser(user: User): User {
         return userRepository.create(user)
@@ -13,8 +17,8 @@ class UserUseCases(private val userRepository: IUserRepository) {
         return userRepository.update(user)
     }
 
-    fun validateUser(user: User): Boolean {
-        val validUser = userRepository.get(user)
-        return validUser != null
+    suspend fun validateUser(user: User): String {
+        userRepository.get(user) ?: throw Exception("User [${user.username}] not found")
+        return tokenGeneratorRepository.generateToken()
     }
 }

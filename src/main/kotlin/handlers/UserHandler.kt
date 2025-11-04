@@ -38,11 +38,8 @@ class UserHandler(
 
             post("/authenticate") {
                 val dto = call.receive<UserRequestDto>()
-                val validUser = userUseCases.validateUser(dto.toUser())
-                if (validUser)
-                    call.respond(HttpStatusCode.Accepted)
-                else
-                    call.respond(HttpStatusCode.Unauthorized)
+                val response = userUseCases.validateUser(dto.toUser())
+                call.respond(response)
             }
         }
     }

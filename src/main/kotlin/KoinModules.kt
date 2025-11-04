@@ -11,7 +11,7 @@ val appModule = module {
     }
 
     single {
-        UserUseCases(get())
+        UserUseCases(get(), get())
     }
 
     single {
