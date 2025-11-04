@@ -58,6 +58,7 @@ Antes de ejecutar el proyecto, asegúrate de tener instalado:
 
 ## Notas
 
+- **User Admin** username: admin1, password: 1234.
 - **Java 21** es obligatorio. Si usas una versión anterior, el proyecto podría fallar al compilar o ejecutar.
 - **MapDB** almacena los datos por defecto en un archivo local (configurable).
 - Incluye pruebas con **JUnit 5** y **mockk** (si aplica).
