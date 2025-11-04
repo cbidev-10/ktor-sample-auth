@@ -51,7 +51,7 @@ class UserUseCasesMockTest {
         coEvery { tokenGeneratorRepository.generateToken() } returns expectedToken
 
         val token = runBlocking {
-            useCases.validateUser(s)
+            useCases.authenticate(s)
         }
 
         assertEquals(expectedToken, token)

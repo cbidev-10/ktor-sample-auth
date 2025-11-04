@@ -17,7 +17,7 @@ class UserUseCases(
         return userRepository.update(user)
     }
 
-    suspend fun validateUser(user: User): String {
+    suspend fun authenticate(user: User): String {
         userRepository.get(user) ?: throw Exception("User [${user.username}] not found")
         return tokenGeneratorRepository.generateToken()
     }

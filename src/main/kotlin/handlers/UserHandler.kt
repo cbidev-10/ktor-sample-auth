@@ -7,6 +7,7 @@ import io.ktor.server.routing.Route
 import io.ktor.server.routing.post
 import io.ktor.server.routing.put
 import io.ktor.server.routing.route
+import models.dto.TokenResponseDto
 import models.dto.UserRequestDto
 import models.dto.toResponseDto
 import models.dto.toUser
@@ -38,8 +39,8 @@ class UserHandler(
 
             post("/authenticate") {
                 val dto = call.receive<UserRequestDto>()
-                val response = userUseCases.validateUser(dto.toUser())
-                call.respond(response)
+                val response = userUseCases.authenticate(dto.toUser())
+                call.respond(TokenResponseDto(response))
             }
         }
     }
