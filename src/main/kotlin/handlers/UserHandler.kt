@@ -21,12 +21,20 @@ class UserHandler(
         route("/users") {
 
             post {
+                val userAgent = call.request.headers["User-Agent-Valid"].toString()
+                if (userAgent.isEmpty()) {
+                    call.respond(HttpStatusCode.Forbidden)
+                }
                 val user = call.receive<UserRequestDto>()
                 val newUser = userUseCases.createUser(user.toUser())
                 call.respond(HttpStatusCode.Created, newUser.toResponseDto())
             }
 
             put("/{id}") {
+                val userAgent = call.request.headers["User-Agent-Valid"].toString()
+                if (userAgent.isEmpty()) {
+                    call.respond(HttpStatusCode.Forbidden)
+                }
                 val id = call.parameters["id"]?.toIntOrNull() ?: return@put call.respond(HttpStatusCode.BadRequest)
 
                 val dto = call.receive<UserRequestDto>()
