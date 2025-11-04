@@ -15,10 +15,6 @@ class UserUseCases(private val userRepository: IUserRepository) {
 
     fun validateUser(user: User): Boolean {
         val validUser = userRepository.get(user)
-        return if (validUser != null) {
-            true
-        } else {
-            false
-        }
+        return validUser != null
     }
 }
